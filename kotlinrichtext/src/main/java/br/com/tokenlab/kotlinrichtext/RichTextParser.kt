@@ -5,16 +5,16 @@ import android.text.Html
 import android.text.method.LinkMovementMethod
 import android.widget.TextView
 
-class Parser(val parser: URLImageParser) {
+class RichTextParser(private val urlImageParser: URLImageParser) {
 
     fun parse(textView: TextView, text: String, clickable: Boolean = true) {
-        parser.textView = textView
+        urlImageParser.textView = textView
 
         textView.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.fromHtml(text, 0, parser, Html.TagHandler { _, _, _, _ ->  })
+            Html.fromHtml(text, 0, urlImageParser, Html.TagHandler { _, _, _, _ ->  })
         } else {
             @Suppress("DEPRECATION")
-            Html.fromHtml(text, parser, Html.TagHandler { _,_,_,_ ->  })
+            Html.fromHtml(text, urlImageParser, Html.TagHandler { _, _, _, _ ->  })
         }
 
         if (clickable) {
