@@ -1,4 +1,4 @@
-package br.com.tokenlab.kotlinrichtextandroid
+package br.com.tokenlab.kotlinrichtext
 
 import android.graphics.drawable.Drawable
 
